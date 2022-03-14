@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-import Game from './components/game';
 import reportWebVitals from './reportWebVitals';
+import Approute from './components/common/Approute'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
+    <Approute/>
   </React.StrictMode>,
   document.getElementById('root')
 );
