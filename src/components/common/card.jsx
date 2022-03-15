@@ -57,7 +57,7 @@ class Card extends React.Component {
           else
           {
             console.log('nem ugyanaz')
-            setTimeout(() => {  this.unflip(one,two); }, 1000);
+            setTimeout(() => {  this.unflip(one,two); }, 500);
             
           }
           this.props.cards.pop()
@@ -73,7 +73,7 @@ class Card extends React.Component {
     render() {
 
       return (
-        <ReactCardFlip key={this.props.id} isFlipped={this.state.isFlipped} flipDirection="vertical">
+        <ReactCardFlip key={this.props.id} isFlipped={this.state.isFlipped} flipDirection="horizontal">
             <Cardfront img={this.props.img} hover={this.props.hover} click={this.handleClick}>
             </Cardfront>
         
