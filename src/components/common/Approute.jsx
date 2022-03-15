@@ -15,6 +15,7 @@ const Approute = () => {
             <Route exact path="/" element={<Select/> }/>
             <Route exact path="/g1" element={<Board set="set1"/>}/>
             <Route exact path="/g2" element={<Board set="set2"/>}/>
+            <Route exact path="/g3" element={<Board set="set3"/>}/>
             <Route path="*" element={<Notfound/>}/>
         </Routes>
     </Router>

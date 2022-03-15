@@ -14,8 +14,10 @@ const Select = () => {
         <a href="/g2">
           <div onMouseEnter={() => setDeck("set2")}><Card img="../imgs/set2/1.png" hover="hover:border-red-600 "/></div>
         </a>
-        <div>03</div>
-        <div>04</div>
+        <a href="/g3">
+          <div onMouseEnter={() => setDeck("set3")}><Card img="../imgs/set3/1.png" hover="hover:border-red-600 "/></div>
+        </a>
+        <div><Card img="../imgs/notfound2.png" hover="hover:border-red-600 "/></div>
 
       </div>
       <Display set={deck}/>

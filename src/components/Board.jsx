@@ -4,6 +4,7 @@ import Card from './common/Card'
 class Board extends React.Component {
    render() {
     var cards=[];
+    var match;
     const array=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12]
     const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
     const hover="hover:border-red-600 "
@@ -12,8 +13,18 @@ class Board extends React.Component {
 
 
       let items = []
+    var tmp="";
+      for(let i = 0; i < 24; i++)
+      {
+        tmp+=shuffledArray[i]+"  ";
+        if((i+1)%6==0)
+        {
+          console.log(tmp)
+          tmp=""
+        }
+      }
       for (let i = 0; i < 24; i++) {
-        items.push(<Card img={path+shuffledArray[i]+".png"} hover={hover} back={back} id={i} cards={cards}/>)
+        items.push(<Card img={path+shuffledArray[i]+".png"} hover={hover} back={back} id={i} cards={cards} match={match}/>)
       }
 
     return (
