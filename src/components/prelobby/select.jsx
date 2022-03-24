@@ -1,5 +1,5 @@
 import {React,useState} from 'react'
-import Card from 'common/Cardfront'
+import Card from 'components/common/Cardfront'
 import Display from 'Display'
 
 
