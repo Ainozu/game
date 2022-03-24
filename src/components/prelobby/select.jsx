@@ -1,6 +1,6 @@
 import {React,useState} from 'react'
 import Card from '../common/Cardfront'
-import Display from './Display'
+import Display from './display'
 
 
 const Select = () => {
