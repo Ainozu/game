@@ -4,9 +4,9 @@ import {
     Routes,
     Route
   } from "react-router-dom";
-import Board from '../Board'
-import Notfound from './Notfound';
-import Select from '../prelobby/Select'
+import Board from 'Board'
+import Notfound from 'Notfound';
+import Select from 'prelobby/Select'
 
 const Approute = () => {
   return (

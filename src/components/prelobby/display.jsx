@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from '../common/Cardfront'
+import Card from 'common/Cardfront'
 
 const Display = ({set}) => {
     console.log(set)
