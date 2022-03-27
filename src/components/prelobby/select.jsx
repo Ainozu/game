@@ -1,6 +1,6 @@
 import {React,useState} from 'react'
 import Card from '../common/Cardfront'
-import Display from './Display'
+import Display from './display'
 
 
 const Select = () => {
@@ -17,7 +17,9 @@ const Select = () => {
         <a href="/g3">
           <div onMouseEnter={() => setDeck("set3")}><Card img="../imgs/set3/1.png" hover="hover:border-red-600 "/></div>
         </a>
-        <div><Card img="../imgs/notfound2.png" hover="hover:border-red-600 "/></div>
+        <a href="/g4">
+          <div onMouseEnter={() => setDeck("set4")}><Card img="../imgs/set4/1.png" hover="hover:border-red-600 "/></div>
+        </a>
 
       </div>
       <Display set={deck}/>

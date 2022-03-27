@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import Board from '../Board'
 import Notfound from './Notfound';
-import Select from '../prelobby/Select'
+import Select from '../prelobby/select'
 
 const Approute = () => {
   return (
@@ -16,6 +16,7 @@ const Approute = () => {
             <Route exact path="/g1" element={<Board set="set1"/>}/>
             <Route exact path="/g2" element={<Board set="set2"/>}/>
             <Route exact path="/g3" element={<Board set="set3"/>}/>
+            <Route exact path="/g4" element={<Board set="set4"/>}/>
             <Route path="*" element={<Notfound/>}/>
         </Routes>
     </Router>
