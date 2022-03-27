@@ -24,8 +24,7 @@ class Card extends React.Component {
       //console.log('ápdét')
       this.setState({isFlipped : true}) 
     } 
-    
-   
+
     unflip(one,two) {
       one.updateState()
       two.updateState()
@@ -63,7 +62,8 @@ class Card extends React.Component {
                 html:
                 '<a href="/"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded-full">Vissza az elejére</a> ',
                 showCancelButton: false, 
-                showConfirmButton: false 
+                showConfirmButton: false,
+                allowOutsideClick:false
               })
             }
           }
