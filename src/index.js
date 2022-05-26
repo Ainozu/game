@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+import store from './components/redux/store'
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import './style.css';
-import reportWebVitals from './reportWebVitals';
-import Approute from './components/common/Approute'
+import Approute from './components/routes/Approute'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Approute/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+let persistor = persistStore(store);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function App() {
+
+    return (
+        <Approute/>
+    )
+}
+
+export default App;
+
+if (document.getElementById('root')) {
+    ReactDOM.render(
+    <Provider store={store}>
+        <PersistGate persistor={persistor}>
+            <App />
+        </PersistGate>
+    </Provider>
+    ,document.getElementById('root'));
+}
+
