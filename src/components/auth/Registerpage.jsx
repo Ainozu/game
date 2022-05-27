@@ -1,17 +1,20 @@
 import React,{useState} from 'react'
 import axios from 'axios'
+import {useDispatch } from 'react-redux'
+import {login} from '../redux/userdataSlice'
+import {useNavigate} from 'react-router-dom'
 
 
 const Registerpage = () => {
     const [username,setUsername]=useState("")
     const [password,setPassword]=useState("")
+    const [error,setError]=useState("")
+    const navigate = useNavigate()
 
+    const dispatch =useDispatch();
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-
-     
-        
         axios.post('http://localhost/game/src/components/auth/register.php', {
             username: username,
             password: password,
@@ -19,12 +22,21 @@ const Registerpage = () => {
             withCredentials:true
         })
         .then(response => { 
-            console.log(response.data)
-           /*switch(response.status){
-               case 200:console.log("W"); break;
-               case 400: console.log("már van"); break;
-            }*/
-           
+            if(response.data.status==200)
+            {
+            dispatch(
+                login({
+                    username:username,
+                    loggedIn:true,
+                })
+                )
+                setError("")
+                navigate('/')
+            }
+            if(response.data.status==400)
+            {
+                setError("Felhasználó már létezik")
+            }           
         })
         .catch(error => {
             //console.log(error.response)
@@ -45,13 +57,18 @@ const Registerpage = () => {
       <React.Fragment>
          <div className="grid place-items-center h-screen" >
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 border-red-200">
+                {error!="" &&
+                    <h2 className="text-red-700">
+                        {error}
+                    </h2>
+                }
                 <div className="mb-4">
                 {/*<label htmlFor="username">Username:</label>*/}
                     <input 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text" 
                         id="username" 
-                        placeholder="Username"
+                        placeholder="Felhasználónév"
                         autoComplete="off"
                         value={username}
                         onChange={(e)=> setUsername(e.target.value)}
@@ -64,14 +81,15 @@ const Registerpage = () => {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="password"
                         id="password"
-                        placeholder="Password"
+                        placeholder="Jelszó"
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <button type="submit" className="btn btn-primary btn-block ">Sign in</button>
+                <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" >Regisztráció</button>
+
                 </div>
             </form>
          </div>

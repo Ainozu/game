@@ -20,7 +20,7 @@ $result = $conn->query($sql);
 $row=$result->fetch_assoc();
 $count=$row['count'];
 
-if ($count == 0 && $username!=null) {
+if ($count == 0 && $username!=null &&$password!=null) {
     $sql = "INSERT INTO users (username, password) VALUES ('$username','$password')";
     $conn->query($sql);
     echo json_encode(["status" => 200, ]);

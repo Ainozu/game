@@ -1,50 +1,48 @@
 import React,{useState} from 'react'
-import {useDispatch } from 'react-redux'
-import {login} from '../redux/userdataSlice'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { GetUsername } from '../redux/userdataSlice';
 
-const Loginpage = () => {
-    const [username,setUsername]=useState("")
-    const [password,setPassword]=useState("")
+const Pwchangepage = () => {
+    const [passwordold,setPasswordOld]=useState("")
+    const [passwordnew,setPasswordNew]=useState("")
     const [error,setError]=useState("")
-    const navigate = useNavigate();
-    
-    const dispatch =useDispatch();
+    const navigate = useNavigate()
+    const username=GetUsername()
+
 
     const handleSubmit = (e)=>{
         e.preventDefault();
         
-        axios.post('http://localhost/game/src/components/auth/login.php', {
+        axios.post('http://localhost/game/src/components/auth/passwordchange.php', {
             username: username,
-            password: password,
+            password_old: passwordold,
+            password_new: passwordnew,
             headers:{ 'Content-Type': 'application/json' },
             withCredentials:true
         })
         .then(response => { 
-            console.log(response.data)
-            if(response.data.status==200)
-            {
-            dispatch(
-                login({
-                    username:username,
-                    loggedIn:true,
-                })
-                )
-                setError("")
-                navigate('/')
-            }
+            console.log(response.data.status)
+            
             if(response.data.status==400)
             {
-                setError("Hibás felhasználónév és/vagy jelszó")
+                setError("Hibás jelszó")
+            }
+            if(response.data.status==401)
+            {
+                setError("Az új jelszó nem lehet ugyanaz")
+            }
+            if(response.data.status==200)
+            {
+                setError("")
+                window.location.href = '/';
             }
         })
         .catch(error => {
         });
     }
-
   return (
-      <React.Fragment>
+    <React.Fragment>
          <div className="grid place-items-center h-screen" >
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 border-red-200">
                 {error!="" &&
@@ -56,12 +54,12 @@ const Loginpage = () => {
                 {/*<label htmlFor="username">Username:</label>*/}
                     <input 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text" 
-                        id="username" 
-                        placeholder="Felhasználónév"
+                        type="password" 
+                        id="password_old" 
+                        placeholder="Régi jelszó"
                         autoComplete="off"
-                        value={username}
-                        onChange={(e)=> setUsername(e.target.value)}
+                        value={passwordold}
+                        onChange={(e)=> setPasswordOld(e.target.value)}
                         required
                     />
                 </div>
@@ -70,16 +68,16 @@ const Loginpage = () => {
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="password"
-                        id="password"
-                        placeholder="Jelszó"
-                        value={password}
-                        onChange={(e)=> setPassword(e.target.value)}
+                        id="password_new"
+                        placeholder="Új jelszó"
+                        value={passwordnew}
+                        onChange={(e)=> setPasswordNew(e.target.value)}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                <div class="flex justify-evenly items-center">
-                <button type="submit" className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Belépés</button>
+                <div className="flex justify-evenly items-center">
+                <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">Jelszó módosítása</button>
                 </div>
                     
                 </div>
@@ -91,4 +89,4 @@ const Loginpage = () => {
   )
 }
 
-export default Loginpage
+export default Pwchangepage

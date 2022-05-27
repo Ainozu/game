@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../common/Cardfront'
 
 const Display = ({set}) => {
-    console.log(set)
+    //console.log(set)
   return (
     <div>
         
