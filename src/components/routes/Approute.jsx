@@ -5,8 +5,10 @@ import {
     Route
   } from "react-router-dom";
 import Board from '../Board'
-import Notfound from './Notfound';
+import Notfound from '../common/Notfound';
 import Select from '../prelobby/select'
+import LoginPage from '../auth/Loginpage'
+import Registerpage from '../auth/Registerpage'
 
 const Approute = () => {
   return (
@@ -17,6 +19,8 @@ const Approute = () => {
             <Route exact path="/g2" element={<Board set="set2"/>}/>
             <Route exact path="/g3" element={<Board set="set3"/>}/>
             <Route exact path="/g4" element={<Board set="set4"/>}/>
+            <Route exact path="/login" element={<LoginPage/> }/>
+            <Route exact path="/register" element={<Registerpage/> }/>
             <Route path="*" element={<Notfound/>}/>
         </Routes>
     </Router>
