@@ -6,8 +6,7 @@ class Board extends React.Component {
     var cards=[];
     var match;
     const array=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12]
-    //const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
-    const shuffledArray=array
+    const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
     const hover="hover:border-red-600 "
     const path="../imgs/"+this.props.set+"/"
     const back="../imgs/"+this.props.set+"/bg.png"
