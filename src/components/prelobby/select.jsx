@@ -10,6 +10,7 @@ import Loginpage from '../auth/Loginpage'
 import Registerpage from '../auth/Registerpage'
 import Popup from 'reactjs-popup'
 import Pwchangepage from '../auth/Pwchangepage'
+import Scores from './Scores'
 
 
 
@@ -77,6 +78,10 @@ const Select = () => {
         </Link>
 
       </div>
+
+      {username!=null&&
+        <Scores/>
+      }
       <Display set={deck}/>
     </React.Fragment>
   )

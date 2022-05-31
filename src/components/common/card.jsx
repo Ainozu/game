@@ -4,13 +4,17 @@ import Cardback from './Cardback'
 import ReactCardFlip from 'react-card-flip'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios'
 
 const MySwal = withReactContent(Swal)
 var match=0
+var start=new Date()
 class Card extends React.Component {
     constructor(props) {
       super();
         this.state = {
+        username:props.username,
+        set:props.set,
         img:props.img,
         isFlipped: true,
         isFounded:false    
@@ -56,16 +60,38 @@ class Card extends React.Component {
             match++
             if (match==12)
             {
+              var end = new Date()
+              const tmp = Math.abs(end - start);
+              
+              var time=tmp / 1000;
+              time=Math.round(time)
+              console.log("time: "+time)
               MySwal.fire({
                 title: 'Győzelem!',
                 icon: 'success',
                 html:
+                time+'<br>'+
                 '<a href="/"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded-full">Vissza az elejére</a> ',
                 showCancelButton: false, 
                 showConfirmButton: false,
                 allowOutsideClick:false
               })
-            }
+              if (this.props.username!=undefined)
+              {
+                axios.post('http://localhost/game/src/components/common/newscore.php', {
+                      username: this.props.username,
+                      set: this.props.set,
+                      time: time,
+                      headers:{ 'Content-Type': 'application/json' },
+                  })
+                  .then(response => { 
+                    console.log(response)
+                  })
+                  .catch(error => {
+                  });
+
+              }
+              }
           }
           else
           {

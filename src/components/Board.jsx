@@ -6,7 +6,8 @@ class Board extends React.Component {
     var cards=[];
     var match;
     const array=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12]
-    const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
+    //const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
+    const shuffledArray=array
     const hover="hover:border-red-600 "
     const path="../imgs/"+this.props.set+"/"
     const back="../imgs/"+this.props.set+"/bg.png"
@@ -24,7 +25,7 @@ class Board extends React.Component {
         }
       }
       for (let i = 0; i < 24; i++) {
-        items.push(<Card img={path+shuffledArray[i]+".png"} hover={hover} back={back} id={i} cards={cards} match={match}/>)
+        items.push(<Card img={path+shuffledArray[i]+".png"} hover={hover} back={back} id={i} cards={cards} match={match} set={this.props.set} username={this.props.username}/>)
       }
 
     return (
